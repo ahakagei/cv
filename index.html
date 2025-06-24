@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Custom font families */
+        /* --- ORIGINAL DESKTOP STYLES (RESTORED) --- */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #ffffff;
@@ -22,88 +22,47 @@
         .font-orbitron { font-family: 'Orbitron', sans-serif; }
         .text-mgs-green { color: #94b325; }
         
-        /* Intro Overlay styles */
         #intro-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; z-index: 100;
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         #intro-overlay.hidden {
-            opacity: 0;
-            transform: scale(1.2);
-            pointer-events: none;
+            opacity: 0; transform: scale(1.2); pointer-events: none;
         }
         #intro-loader {
-            width: 60px;
-            height: 60px;
-            border: 5px solid rgba(255, 255, 255, 0.2);
-            border-top-color: #94b325;
-            border-radius: 50%;
+            width: 60px; height: 60px; border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #94b325; border-radius: 50%;
             animation: spin-simple 1s linear infinite;
         }
         #intro-text {
-            color: #94b325;
-            margin-top: 1.5rem;
-            font-family: 'Orbitron', sans-serif;
-            text-align: center;
+            color: #94b325; margin-top: 1.5rem; font-family: 'Orbitron', sans-serif; text-align: center;
         }
 
         .main-container {
-            height: 100vh;
-            display: flex;
-            transform: scale(0.9);
-            opacity: 0;
+            height: 100vh; display: flex; transform: scale(0.9); opacity: 0;
             transition: transform 0.8s ease-out, opacity 0.8s ease-out;
         }
         .main-container.visible {
-            transform: scale(1);
-            opacity: 1;
+            transform: scale(1); opacity: 1;
         }
 
         .vertical-text-container {
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            text-orientation: mixed;
-            white-space: nowrap;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            writing-mode: vertical-rl; transform: rotate(180deg); text-orientation: mixed;
+            white-space: nowrap; text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         }
         
-        .character-art-container {
-            position: relative;
-            cursor: pointer;
-        }
+        .character-art-container { position: relative; cursor: pointer; }
 
         #skills-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 85%;
-            height: auto;
-            background-color: rgba(0, 0, 0, 0.85);
-            border: 1px solid #4a5568;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            padding: 1rem;
-            color: #e2e8f0;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease-in-out;
-            z-index: 30;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 85%; height: auto; background-color: rgba(0, 0, 0, 0.85);
+            border: 1px solid #4a5568; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+            padding: 1rem; color: #e2e8f0; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease-in-out; z-index: 30;
         }
-
-        .character-art-container:hover #skills-overlay {
-            opacity: 1;
-        }
+        .character-art-container:hover #skills-overlay { opacity: 1; }
         
         .skill-boxes-container { display: flex; gap: 3px; align-items: center; }
         .skill-box { width: 12px; height: 12px; background-color: #2d3748; border: 1px solid #4a5568; }
@@ -113,15 +72,13 @@
         .soft-skills-table td { border: 1px solid #4a5568; padding: 4px; text-align: center; }
 
         .content-display { border-top: 2px solid #333; border-bottom: 2px solid #333; position: relative; overflow: hidden; }
-        
         #content-wrapper { transition: opacity 0.3s ease-in-out; }
 
         .menu-button {
             background-color: #ffffff; border: 1px solid #a0a0a0; color: #333;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            cursor: pointer; position: relative; display: flex; align-items: center; transform: scale(1);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer;
+            position: relative; display: flex; align-items: center; transform: scale(1);
         }
-
         .menu-button .icon, .menu-button span { position: relative; z-index: 2; }
         .menu-button .icon { width: 24px; height: 24px; margin-right: 12px; transition: fill 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); fill: #333; }
         .menu-button:hover { background-color: #a7c92b; color: #ffffff; border-color: #a7c92b; }
@@ -131,7 +88,6 @@
             background-color: #94b325; color: #ffffff; border-color: #94b325;
             box-shadow: 0 0 15px rgba(148, 179, 37, 0.8); transform: scale(1.03);
         }
-        
         .menu-button::before {
             content: ''; position: absolute; top: -1px; bottom: -1px; left: -1.5rem; width: 0;
             background-color: #94b325; z-index: 1; transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -169,54 +125,72 @@
             to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        /* --- MOBILE STYLES (ENHANCED) --- */
+        /* Default state for mobile-only content: hidden */
+        #mobile-cv-content {
+            display: none;
+        }
+
+        /* --- MOBILE-ONLY STYLES --- */
         @media (max-width: 768px) {
-            body { overflow: hidden; }
-            .main-container { flex-direction: column; height: 100vh; padding: 0; }
+            body { overflow-y: auto; }
+
+            #intro-overlay, .character-art-container, #right-panel {
+                display: none !important;
+            }
+
+            .main-container {
+                height: auto;
+                min-height: 100vh;
+                flex-direction: column;
+                padding: 0;
+                /* Make visible immediately on mobile, overriding desktop animation defaults */
+                opacity: 1;
+                transform: none;
+            }
+
             .left-panel, .right-panel { width: 100% !important; }
             
             .left-panel {
-                height: 100vh;
-                padding: 1rem;
-                display: flex;
-                flex-direction: column;
-                position: relative; /* For positioning the button */
-            }
-            .right-panel {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                height: 100vh;
-                padding: 1.5rem;
-                transform: translateY(100%); /* Start off-screen */
-                transition: transform 0.5s ease-in-out;
-                z-index: 50;
-                display: flex;
-                flex-direction: column;
-            }
-            .right-panel.show-panel {
-                transform: translateY(0); /* Slide into view */
+                height: auto; padding: 1rem;
+                display: flex; flex-direction: column;
             }
 
             .vertical-text-container { 
-                writing-mode: horizontal-tb; transform: none; text-align: center; 
-                margin-bottom: 1rem; padding: 0 1rem; flex-shrink: 0;
+                writing-mode: horizontal-tb; transform: none;
+                text-align: center; padding: 1rem; width: 100%;
+                border: 1px solid #e2e8f0; background-color: #f8fafc;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             }
-            .character-art-container { flex-grow: 1; min-height: 0; }
-            .character-art-container img { height: 100%; width: 100%; object-fit: contain; }
+            .vertical-text-container h1 { line-height: 1.4; } /* Rely on Tailwind classes for font-size */
             
-            #backdrop-number { font-size: 6rem; bottom: -10px; }
-            
-            #content-display {
-                flex-grow: 1; min-height: 0; padding: 1rem;
-                display: flex; flex-direction: column;
+            #mobile-cv-content {
+                display: block; width: 100%; margin-top: 2rem;
             }
-            #content-wrapper {
-                flex-grow: 1; overflow-y: auto; padding-right: 0.5rem;
+            .mobile-cv-section {
+                margin-bottom: 2rem; padding-bottom: 1.5rem;
+                border-bottom: 1px solid #e2e8f0;
             }
-            #content-subtitle { font-size: 1.75rem; line-height: 1.2; }
-            #content-title { font-size: 1rem; }
-            #content-body { font-size: 0.875rem; }
+            .mobile-cv-section:last-child { border-bottom: none; }
+            .mobile-cv-section h3 {
+                font-family: 'Orbitron', sans-serif; font-size: 1.25rem;
+                font-weight: 700; color: #333; margin-bottom: 0.25rem;
+            }
+            .mobile-cv-section .subtitle {
+                color: #555; font-weight: 600; margin-bottom: 1rem;
+            }
+            .mobile-cv-section .content-body {
+                font-size: 1rem; line-height: 1.6; color: #4a5568; font-weight: 400;
+            }
+            .additional-skills-mobile {
+                margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb;
+            }
+            .additional-skills-mobile h4 {
+                font-family: 'Orbitron', sans-serif; font-size: 1.1rem;
+                font-weight: 600; color: #333; margin-bottom: 0.75rem;
+            }
+            .mobile-experience-sub-section {
+                margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px dotted #ccc;
+            }
         }
     </style>
 </head>
@@ -234,8 +208,9 @@
     <div class="main-container">
         <div class="w-full flex h-full flex-wrap relative"> 
             <div class="w-full md:w-7/12 flex h-full left-panel">
-                <div class="flex items-center justify-center md:h-full p-2"> <div class="vertical-text-container text-center">
-                        <h1 class="font-orbitron text-3xl md:text-4xl font-bold tracking-widest text-gray-700">Abdulla Ahmed Khamis</h1>
+                <div class="flex items-center justify-center md:h-full p-2">
+                    <div class="vertical-text-container text-center">
+                        <h1 class="font-orbitron text-3xl md:text-4xl font-bold tracking-widest text-gray-700">Abdulla Ahmed<br>Khamis</h1>
                         <p class="text-base md:text-lg text-gray-600 mt-2">CV / PORTFOLIO</p>
                     </div>
                 </div>
@@ -255,17 +230,10 @@
                         </div>
                     </div>
                 </div>
-                <button id="view-details-btn" class="md:hidden absolute bottom-4 left-1/2 -translate-x-1/2 bg-gray-800 text-white font-orbitron py-3 px-6 rounded-lg shadow-lg z-10">
-                    VIEW DETAILS
-                </button>
+                <div id="mobile-cv-content"></div>
             </div>
 
             <div id="right-panel" class="w-full md:w-5/12 flex flex-col h-full bg-gray-100 p-6 shadow-xl right-panel border-l-2 border-gray-400">
-                <button id="close-panel-btn" class="md:hidden absolute top-6 right-6 text-gray-600 z-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
                 <div id="content-display" class="content-display flex-grow p-6 text-gray-800">
                     <div id="slide-overlay"></div>
                     <div id="loader"></div>
@@ -278,7 +246,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div id="menu-container" class="mt-4 space-y-1"></div>
             </div>
         </div>
@@ -296,7 +263,6 @@
                 { id: 'master-book', buttonText: 'EX: Master Book', title: '2019', subtitle: 'Game Artist', content: `[ Saudi Gamer Studio] | [KSA] (Remote) <br>  Conceptualized and created a wide range of in-game assets, including character designs, environments, UI elements, and promotional art. <br> Collaborated closely with developers and designers to ensure a cohesive and immersive visual style that aligned with the game's narrative and mechanics.<br> •	Contributed to brainstorming and storyboarding sessions, helping to shape the artistic direction of the project.`, number: '06', icon: `<svg class="icon" viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>` },
                 { id: 'screenplay', buttonText: 'EX: Screenplay Book', title: '2020 - Present', subtitle: 'Freelance Artist & Designer', content: `[ Independent] | (Remote) <br> • Delivered high-quality character art, illustrations, and sprite sheets for independent game developers and private commissions. <br> • Graphic Design: Created logos, branding packages, and marketing materials (posters, menus, social media graphics) for restaurants and local events, enhancing their visual identity and customer appeal. <br>  • AI Exploration: Actively experiment with generative AI tools, including Large Language Models (LLMs) for creative writing/ideation and Stable Diffusion models for advanced texture generation and concept art.`, number: '07', icon: `<svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>` }
             ];
-
             const languageData = [ { name: 'Arabic', level: 100 }, { name: 'English', level: 100 }];
             const softSkillsData = [ 'Problem Solving', 'Leadership', 'Adaptability', 'Critical Thinking', 'Workflow Managment', 'Self-Motivated', 'Intel Analysis', 'Recruitment', 'Managing Resources' ];
             const introTexts = [ 'CALIBRATING INTERFACE...', 'DECRYPTING FIELD DATA...', 'LOADING VIRTUAL MISSION...', 'ESTABLISHING SECURE CONNECTION...', 'AUTHENTICATING USER...', 'RENDERING TACTICAL DISPLAY...' ];
@@ -305,9 +271,6 @@
             const introOverlay = document.getElementById('intro-overlay');
             const introText = document.getElementById('intro-text');
             const mainContainer = document.querySelector('.main-container');
-            const rightPanel = document.getElementById('right-panel');
-            const viewDetailsBtn = document.getElementById('view-details-btn');
-            const closePanelBtn = document.getElementById('close-panel-btn');
             const menuContainer = document.getElementById('menu-container');
             const contentWrapper = document.getElementById('content-wrapper');
             const contentTitle = document.getElementById('content-title');
@@ -318,16 +281,16 @@
             const languageSkillsContainer = document.getElementById('language-skills');
             const softSkillsContainer = document.getElementById('soft-skills-container');
             const clickSound = document.getElementById('click-sound');
-            const hoverSound = document.getElementById('hover-sound'); // Added for hover
+            const hoverSound = document.getElementById('hover-sound');
             const ambientSound = document.getElementById('ambient-sound');
             const loader = document.getElementById('loader');
+            const mobileContentContainer = document.getElementById('mobile-cv-content');
             
             let buttons = [];
             let isOverlayVisible = true;
 			
-            // --- Set Audio Volumes ---
-			document.getElementById("click-sound").volume = 0.5;
-            if (hoverSound) hoverSound.volume = 0.2; // Set a lower volume for hover
+            document.getElementById("click-sound").volume = 0.5;
+            if (hoverSound) hoverSound.volume = 0.2;
 			
             // --- FUNCTIONS ---
             const startIntroSequence = () => {
@@ -392,42 +355,85 @@
             };
             
             // --- INITIALIZATION ---
-            startIntroSequence();
-            
-            // Mobile panel controls
-            viewDetailsBtn.addEventListener('click', () => {
-                rightPanel.classList.add('show-panel');
-            });
-            closePanelBtn.addEventListener('click', () => {
-                rightPanel.classList.remove('show-panel');
-            });
 
+            if (!window.matchMedia("(max-width: 768px)").matches) {
+                startIntroSequence();
+            } else {
+                // For mobile, the animation is skipped, so we manually add the 'visible' class
+                // The actual hiding/showing is done by CSS media queries
+                mainContainer.classList.add('visible');
+            }
 
+            // 1. Desktop Initialization
             cvData.forEach(item => {
                 const button = document.createElement('button');
                 button.className = 'menu-button w-full text-left p-2 text-base font-semibold';
                 button.dataset.id = item.id;
                 button.innerHTML = `${item.icon}<span>${item.buttonText}</span>`;
-                
-                // Click event listener
                 button.addEventListener('click', () => updateContent(item.id));
-                
-                // Hover (mouseenter) event listener
                 button.addEventListener('mouseenter', () => {
                     if (hoverSound) {
                         hoverSound.currentTime = 0;
                         hoverSound.play().catch(e => console.error("Hover sound error:", e));
                     }
                 });
-                
                 menuContainer.appendChild(button);
                 buttons.push(button);
             });
 
+            // 2. Mobile Initialization
+            const gameArtistItem = cvData.find(i => i.id === 'master-book');
+            const freelanceArtistItem = cvData.find(i => i.id === 'screenplay');
+
+            const gameArtistHtml = `<div class="mobile-experience-sub-section">
+                                        <p class="subtitle">${gameArtistItem.subtitle} (${gameArtistItem.title})</p>
+                                        <div class="content-body">${gameArtistItem.content}</div>
+                                    </div>`;
+            const freelanceArtistHtml = `<div class="mobile-experience-sub-section">
+                                        <p class="subtitle">${freelanceArtistItem.subtitle} (${freelanceArtistItem.title})</p>
+                                        <div class="content-body">${freelanceArtistItem.content}</div>
+                                    </div>`;
+
+            cvData.forEach(item => {
+                if (item.id === 'master-book' || item.id === 'screenplay') {
+                    return;
+                }
+
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'mobile-cv-section';
+                let initialContent = `
+                    <h3>${item.buttonText}</h3>
+                    <p class="subtitle">${item.subtitle}</p>
+                    <div class="content-body">${item.content}</div>
+                `;
+                
+                if (item.id === 'experience') {
+                    initialContent += gameArtistHtml;
+                    initialContent += freelanceArtistHtml;
+                }
+
+                sectionDiv.innerHTML = initialContent;
+                
+                if (item.id === 'skills') {
+                    const additionalSkillsDiv = document.createElement('div');
+                    additionalSkillsDiv.className = 'additional-skills-mobile';
+                    
+                    const langHtml = `<h4>LANGUAGES</h4><p class="content-body">${languageData.map(l => l.name).join(', ')}</p>`;
+                    const softSkillsHtml = `<h4 class="mt-4">SOFT SKILLS</h4><p class="content-body">${softSkillsData.join(', ')}</p>`;
+
+                    additionalSkillsDiv.innerHTML = langHtml + softSkillsHtml;
+                    sectionDiv.appendChild(additionalSkillsDiv);
+                }
+
+                mobileContentContainer.appendChild(sectionDiv);
+            });
+
+
+            // 3. Skills Data population (for desktop overlay)
             languageData.forEach(lang => {
                 const langDiv = document.createElement('div');
                 langDiv.innerHTML = `<p>${lang.name}</p>${buildSkillBoxes(lang.level)}`;
-                languageSkillsContainer.appendChild(langDiv);
+                if(languageSkillsContainer) languageSkillsContainer.appendChild(langDiv);
             });
 
             const table = document.createElement('table');
@@ -443,8 +449,9 @@
                 tbody.appendChild(row);
             }
             table.appendChild(tbody);
-            softSkillsContainer.appendChild(table);
+            if(softSkillsContainer) softSkillsContainer.appendChild(table);
 
+            // 4. Set initial state for desktop view
             if(cvData[0]) {
                 updateContent(cvData[0].id);
             }
